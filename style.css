@@ -142,22 +142,4 @@ body {
     .card {
         padding: 25px;
     }
-    /* SUBTÍTULOS EN COMPARACIÓN */
-.card h3 {
-    margin-top: 25px;
-    margin-bottom: 10px;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--green-main);
-    font-size: 1.3rem;
-}
-
-/* MEJORA LISTAS ECO */
-.eco-list {
-    margin: 15px 0;
-    padding-left: 20px;
-}
-
-.eco-list li {
-    margin-bottom: 8px;
-}
 }
