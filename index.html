@@ -15,7 +15,7 @@
         <div class="overlay"></div>
         <div class="hero-content">
             <h1 class="logo-main">
-                Desarrollo urbano <span>no planificado</span>
+                Desarrollo Urbano <span>No Planificado</span>
             </h1>
             <p>San Miguelito y Panamá Oeste como ejemplo del crecimiento desordenado</p>
         </div>
@@ -40,7 +40,6 @@
                     y sin coordinación entre vivienda e infraestructura. Esto provoca barrios desordenados,
                     falta de servicios básicos y desigualdad en la calidad de vida.
                 </p>
-                <p></p>
 
                 <p>
                     En Panamá, dos casos claros son el distrito de <strong>San Miguelito</strong> 
@@ -72,9 +71,9 @@
                     sin infraestructura suficiente.
                 </p>
 
-                          <div class="img-container">
-                <img src="https://www.panamaamerica.com.pa/sites/default/files/imagenes/2016/11/07/distrito_de_san_miguelito.jpg" alt="Vista aérea de San Miguelito">
-            </div>
+                <div class="img-container">
+                    <img src="https://www.panamaamerica.com.pa/sites/default/files/imagenes/2016/11/07/distrito_de_san_miguelito.jpg" alt="Vista aérea de San Miguelito">
+                </div>
 
             </div>
         </article>
@@ -105,10 +104,43 @@
                     El problema central es la <strong>expansión horizontal sin planificación territorial</strong>.
                 </p>
 
-                                <div class="img-container">
+                <div class="img-container">
                     <img src="https://www.laestrella.com.pa/binrepository/591x400/0c0/0d0/none/199516884/QYEH/6439de3ab765e_LE489403_MG218877005.jpeg" alt="Expansión urbana en Panamá Oeste">
                 </div>
 
+            </div>
+        </article>
+
+        <!-- COMPARACIÓN INTERNACIONAL -->
+        <article class="card">
+            <h2 class="title">Comparación Internacional: Europa y Oceanía</h2>
+
+            <div class="content">
+                <p>
+                    Mientras en Panamá el crecimiento urbano ha sido en muchos casos reactivo,
+                    en varias ciudades de Europa y Oceanía la planificación ocurre antes de expandirse.
+                </p>
+
+                <h3>🌍 Europa</h3>
+                <ul class="eco-list">
+                    <li>Planificación territorial obligatoria antes de expandir.</li>
+                    <li>Transporte público masivo eficiente.</li>
+                    <li>Ciudades compactas con menor dependencia del automóvil.</li>
+                    <li>Protección de cinturones verdes urbanos.</li>
+                </ul>
+
+                <h3>🌏 Oceanía</h3>
+                <ul class="eco-list">
+                    <li>Infraestructura lista antes de habitar nuevas zonas.</li>
+                    <li>Estudios ambientales obligatorios.</li>
+                    <li>Gestión avanzada del agua potable.</li>
+                    <li>Restricciones en zonas de riesgo natural.</li>
+                </ul>
+
+                <p class="highlight-text">
+                    La diferencia principal es la planificación anticipada:
+                    primero se diseña la ciudad, luego se construye.
+                </p>
             </div>
         </article>
 
@@ -118,95 +150,28 @@
 
             <div class="content">
                 <p>
-                    Aunque San Miguelito y Panamá Oeste tienen modelos distintos uno denso y otro disperso
+                    Aunque San Miguelito y Panamá Oeste tienen modelos distintos,
                     ambos reflejan el mismo problema: la falta de planificación urbana integral.
-                    Sin coordinación entre vivienda e infraestructura, el crecimiento urbano termina
-                    generando crisis sociales y ambientales.
+                    Sin coordinación entre vivienda e infraestructura,
+                    el crecimiento urbano termina generando crisis sociales y ambientales.
                 </p>
             </div>
         </article>
 
         <!-- COMENTARIOS -->
-<section class="card">
-  <h3 class="title">💬 Comunidad y Debate</h3>
-  <div class="content">
-
-    <input type="text" id="name" placeholder="Tu nombre">
-    <textarea id="comment" placeholder="Escribe tu comentario"></textarea>
-    <button onclick="addComment()">Publicar</button>
-
-    <div id="comments-list"></div>
-
-  </div>
-</section>
+        <section class="card">
+            <h3 class="title">💬 Comunidad y Debate</h3>
+            <div class="content">
+                <p>¿Crees que tu ciudad ha crecido de forma planificada? Deja tu opinión abajo.</p>
+                <div id="disqus_thread"></div>
+            </div>
+        </section>
 
     </main>
 
     <footer class="footer">
-        <p>Tarea de Ecología © 2026 | Hacia un urbanismo consciente</p>
+        <p>Ecología © 2026 | Hacia un urbanismo consciente</p>
     </footer>
 
-    <script src="script.js"></script>
-
-    <!-- Firebase -->
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBVsfn1f8q9WGB00etjLj5F9p1o_cFomdI",
-  authDomain: "ecologia-17a2c.firebaseapp.com",
-  projectId: "ecologia-17a2c",
-  storageBucket: "ecologia-17a2c.firebasestorage.app",
-  messagingSenderId: "896573797352",
-  appId: "1:896573797352:web:9bf3c9c419694f141dea5d"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const commentsRef = collection(db, "comments");
-
-window.addComment = async function() {
-  const name = document.getElementById("name").value;
-  const text = document.getElementById("comment").value;
-
-  if (!name || !text) return alert("Completa todos los campos");
-
-  await addDoc(commentsRef, {
-    name,
-    text,
-    date: new Date()
-  });
-
-  document.getElementById("name").value = "";
-  document.getElementById("comment").value = "";
-
-  loadComments();
-};
-
-async function loadComments() {
-  const q = query(commentsRef, orderBy("date", "desc"));
-  const snapshot = await getDocs(q);
-  const list = document.getElementById("comments-list");
-  list.innerHTML = "";
-
-  snapshot.forEach(doc => {
-    const c = doc.data();
-    list.innerHTML += `
-      <div class="comment-item">
-        <strong>${c.name}</strong>
-        <p>${c.text}</p>
-      </div>
-    `;
-  });
-}
-
-loadComments();
-
-</script>
 </body>
-
 </html>
