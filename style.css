@@ -142,4 +142,88 @@ body {
     .card {
         padding: 25px;
     }
+
+}
+
+/* SECCIÓN COMENTARIOS */
+.card input,
+.card textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    border: 2px solid #d8f3dc;
+    background: #f8fff9;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.card input:focus,
+.card textarea:focus {
+    outline: none;
+    border-color: var(--green-main);
+    box-shadow: 0 0 0 3px rgba(45,106,79,0.15);
+}
+
+/* TEXTAREA */
+.card textarea {
+    min-height: 110px;
+    resize: none;
+}
+
+/* BOTÓN */
+.card button {
+    background: var(--green-main);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card button:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* LISTA DE COMENTARIOS */
+#comments-list {
+    margin-top: 30px;
+}
+
+/* CADA COMENTARIO */
+.comment-item {
+    background: #f1faee;
+    border-left: 6px solid var(--green-soft);
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.comment-item strong {
+    color: var(--green-dark);
+    font-size: 1.05rem;
+}
+
+.comment-item p {
+    margin-top: 8px;
+    color: #344e41;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
