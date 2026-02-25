@@ -127,21 +127,86 @@
         </article>
 
         <!-- COMENTARIOS -->
-        <section class="card">
-            <h3 class="title">💬 Comunidad y Debate</h3>
-            <div class="content">
-                <p>¿Crees que tu ciudad ha crecido de forma planificada? Deja tu opinión abajo.</p>
-                <div id="disqus_thread"></div>
-            </div>
-        </section>
+<section class="card">
+  <h3 class="title">💬 Comunidad y Debate</h3>
+  <div class="content">
+
+    <input type="text" id="name" placeholder="Tu nombre">
+    <textarea id="comment" placeholder="Escribe tu comentario"></textarea>
+    <button onclick="addComment()">Publicar</button>
+
+    <div id="comments-list"></div>
+
+  </div>
+</section>
 
     </main>
 
     <footer class="footer">
-        <p>Ecología © 2026 | Hacia un urbanismo consciente</p>
+        <p>Tarea de Ecología © 2026 | Hacia un urbanismo consciente</p>
     </footer>
 
     <script src="script.js"></script>
-    <script src="comments.js"></script>
+
+    <!-- Firebase -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBVsfn1f8q9WGB00etjLj5F9p1o_cFomdI",
+  authDomain: "ecologia-17a2c.firebaseapp.com",
+  projectId: "ecologia-17a2c",
+  storageBucket: "ecologia-17a2c.firebasestorage.app",
+  messagingSenderId: "896573797352",
+  appId: "1:896573797352:web:9bf3c9c419694f141dea5d"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const commentsRef = collection(db, "comments");
+
+window.addComment = async function() {
+  const name = document.getElementById("name").value;
+  const text = document.getElementById("comment").value;
+
+  if (!name || !text) return alert("Completa todos los campos");
+
+  await addDoc(commentsRef, {
+    name,
+    text,
+    date: new Date()
+  });
+
+  document.getElementById("name").value = "";
+  document.getElementById("comment").value = "";
+
+  loadComments();
+};
+
+async function loadComments() {
+  const q = query(commentsRef, orderBy("date", "desc"));
+  const snapshot = await getDocs(q);
+  const list = document.getElementById("comments-list");
+  list.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    const c = doc.data();
+    list.innerHTML += `
+      <div class="comment-item">
+        <strong>${c.name}</strong>
+        <p>${c.text}</p>
+      </div>
+    `;
+  });
+}
+
+loadComments();
+
+</script>
 </body>
+
 </html>
